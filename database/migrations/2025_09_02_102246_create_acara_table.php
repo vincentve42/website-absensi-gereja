@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('acara', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->text('Nama Acara');
+            $table->text('nama_acara');
             $table->date('tanggal_acara');
         });
     }
