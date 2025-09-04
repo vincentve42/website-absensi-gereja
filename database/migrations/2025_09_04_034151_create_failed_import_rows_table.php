@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('absensi', function (Blueprint $table) {
+        Schema::create('failed_import_rows', function (Blueprint $table) {
             $table->id();
+            $table->json('data');
+            $table->foreignId('import_id')->constrained()->cascadeOnDelete();
+            $table->text('validation_error')->nullable();
             $table->timestamps();
-            $table->bigInteger('jemaat_id')->references('id')->on('jemaat')->onDelete()->cascade();
-            $table->bigInteger('acara_id')->references('id')->on('acara')->onDelete()->cascade();
-            $table->text('status_kehadiran')->default('Tidak Hadir');
-            $table->integer('done')->default(0);
         });
     }
 
@@ -26,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absensi');
+        Schema::dropIfExists('failed_import_rows');
     }
 };
