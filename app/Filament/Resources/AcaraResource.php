@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Exports\AcaraExporter;
+use App\Filament\Imports\AcaraImporter;
 use App\Filament\Resources\AcaraResource\Pages;
 use App\Filament\Resources\AcaraResource\RelationManagers;
 use App\Models\Acara;
@@ -46,8 +47,8 @@ class AcaraResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('nama_acara')->label('Acara'),
-                TextColumn::make('tanggal_acara')
+                TextColumn::make('nama_acara')->label('Acara')->searchable(),
+                TextColumn::make('tanggal_acara')->searchable()->sortable()
                     ->dateTime()->label('Tanggal, dan Jam Acara'),
             ])
             ->filters([
@@ -55,6 +56,7 @@ class AcaraResource extends Resource
             ])
             ->headerActions([
                 \Filament\Tables\Actions\ExportAction::make()->exporter(AcaraExporter::class),
+                \Filament\Tables\Actions\ImportAction::make()->importer(AcaraImporter::class) 
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

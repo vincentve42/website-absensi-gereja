@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Exports\JemaatExporter;
+use App\Filament\Imports\JemaatImporter;
 use App\Filament\Resources\JemaatResource\Pages;
 use App\Filament\Resources\JemaatResource\RelationManagers;
 use App\Models\Jemaat;
@@ -45,9 +46,9 @@ class JemaatResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id'),
-                TextColumn::make('nama_jemaat')->label('Nama Jemaat'),
-                TextColumn::make('alamat_jemaat')->label('Alamat Jemaat'),
-                TextColumn::make('nomor_telepon')->label('Nomor Telepon')
+                TextColumn::make('nama_jemaat')->label('Nama Jemaat')->searchable()->sortable(),
+                TextColumn::make('alamat_jemaat')->label('Alamat Jemaat')->searchable(),
+                TextColumn::make('nomor_telepon')->label('Nomor Telepon')->searchable()
             ])
             ->filters([
                 //
@@ -59,6 +60,7 @@ class JemaatResource extends Resource
             ])
             ->headerActions([
                 \Filament\Tables\Actions\ExportAction::make()->exporter(JemaatExporter::class),
+                \Filament\Tables\Actions\ImportAction::make()->importer(JemaatImporter::class)
                 
             ])
             ->bulkActions([

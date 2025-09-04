@@ -10,7 +10,9 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\SelectColumn;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -45,12 +47,15 @@ class AbsensiResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('id')->label('ID'),
-                TextColumn::make('Jemaat.nama_jemaat'),
-                TextColumn::make('Acara.nama_acara'),
-                TextColumn::make('')
+                TextColumn::make('Jemaat.nama_jemaat')->searchable(),
+                TextColumn::make('Acara.nama_acara')->sortable()->searchable(),
+                  SelectColumn::make('status_kehadiran')
+                    ->label('Hadir')->options(['Hadir' => 'Hadir','Tidak Hadir' => 'Tidak hadir','Izin' => 'Izin', 'Sakit' => 'Sakit']),
+                
             ])
             ->filters([
-                //
+                SelectFilter::make('acara_id')->label('Acara')->relationship('Acara', 'nama_acara')->searchable(),
+                SelectFilter::make('status_kehadiran')->label('Status Kehadiran')
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

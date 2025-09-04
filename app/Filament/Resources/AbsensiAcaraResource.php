@@ -54,7 +54,7 @@ class AbsensiAcaraResource extends Resource
             ->columns([
                 TextColumn::make('id')->label('ID'),
                 
-                TextColumn::make('Jemaat.nama_jemaat')
+                TextColumn::make('Jemaat.nama_jemaat')->sortable()->searchable()
                     ->label('Nama Jemaat'),
                 
                 SelectColumn::make('status_kehadiran')
