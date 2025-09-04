@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\AcaraExporter;
 use App\Filament\Resources\AcaraResource\Pages;
 use App\Filament\Resources\AcaraResource\RelationManagers;
 use App\Models\Acara;
@@ -51,6 +52,9 @@ class AcaraResource extends Resource
             ])
             ->filters([
                 //
+            ])
+            ->headerActions([
+                \Filament\Tables\Actions\ExportAction::make()->exporter(AcaraExporter::class),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

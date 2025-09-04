@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Absensi extends Model
 {
     protected $table = 'absensi';
+
+    protected $fillable = ['jemaat_id','acara_id'];
     public function Jemaat() : BelongsTo
     {
         return $this->belongsTo(Jemaat::class);

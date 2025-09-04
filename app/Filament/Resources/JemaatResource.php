@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Filament\Exports\JemaatExporter;
 use App\Filament\Resources\JemaatResource\Pages;
 use App\Filament\Resources\JemaatResource\RelationManagers;
 use App\Models\Jemaat;
@@ -51,9 +52,14 @@ class JemaatResource extends Resource
             ->filters([
                 //
             ])
+            
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make()
+            ])
+            ->headerActions([
+                \Filament\Tables\Actions\ExportAction::make()->exporter(JemaatExporter::class),
+                
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

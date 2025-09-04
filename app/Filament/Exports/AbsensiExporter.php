@@ -15,26 +15,16 @@ class AbsensiExporter extends Exporter
 {
     protected static ?string $model = Absensi::class;
 
-    public function getXlsxCellStyle(): ?Style
-    {
-        return (new Style())
-             ->setFontBold()
-                ->setFontItalic()
-                ->setFontSize(14)
-                ->setFontName('Consolas')
-                
-                ->setCellAlignment(CellAlignment::CENTER)
-                ->setCellVerticalAlignment(CellVerticalAlignment::CENTER);
-    }
+  
     
     public static function getColumns(): array
     {
         
-        ExportColumn::make('Acara.nama_acara');
+        
         return [
             ExportColumn::make('id')->label('id'),
             ExportColumn::make('Jemaat.nama_jemaat')->label('Nama Jemaat'),
-            ExportColumn::make('Jemaat.nama_acara')->label('Acara'),
+            ExportColumn::make('Acara.nama_acara')->label('Acara'),
             ExportColumn::make('status_kehadiran')->label('Status Kehadiran'),
             
         ];

@@ -38,10 +38,10 @@ class AbsensiAcaraResource extends Resource
     {
         return $form
             ->schema([
-                Select::make('Jemaat')
-                    ->label('Nama Jemaat')->relationship('Jemaat','nama_jemaat'),
-                 Select::make('Jemaat')
-                    ->label('Nama Acara')->relationship('Acara','nama_acara')
+                Select::make('jemaat_id')
+                    ->label('Nama Jemaat')->relationship('Jemaat','nama_jemaat')->searchable(),
+                 Select::make('acara_id')
+                    ->label('Nama Acara')->relationship('Acara','nama_acara')->searchable()
             ]);
     }
     public static function getEloquentQuery() : Builder
