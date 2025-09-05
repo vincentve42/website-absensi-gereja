@@ -50,6 +50,7 @@ class AcaraResource extends Resource
                 TextColumn::make('nama_acara')->label('Acara')->searchable(),
                 TextColumn::make('tanggal_acara')->searchable()->sortable()
                     ->dateTime()->label('Tanggal, dan Jam Acara'),
+                TextColumn::make('total_hadir')->label('Total Hadir'),
             ])
             ->filters([
                 //
