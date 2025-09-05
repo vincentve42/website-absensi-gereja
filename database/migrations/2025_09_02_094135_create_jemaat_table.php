@@ -16,6 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->text('nama_jemaat');
             $table->text('alamat_jemaat');
+            $table->integer('diundang')->default(1);
             $table->text('nomor_telepon');
             
 

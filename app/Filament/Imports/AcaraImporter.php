@@ -17,15 +17,14 @@ class AcaraImporter extends Importer
             ImportColumn::make('nama_acara')->label('Nama Acara'),
            
             ImportColumn::make('total_hadir')->label('Total Hadir'),
+
+            ImportColumn::make('tanggal_acara')->label('Tanggal Acara'),
         ];
     }
 
     public function resolveRecord(): ?Acara
     {
-        return Acara::firstOrNew([
-        //     // Update existing records, matching them by `$this->data['column_name']`
-             'tanggal_acara' => $this->data['tanggal_acara'],
-        ]);
+        return new Acara();
 
        
     }

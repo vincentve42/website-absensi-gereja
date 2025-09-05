@@ -9,7 +9,7 @@ class Acara extends Model
 {
     protected $table = "acara";
 
-    protected $fillable = ['nama_acara','tanggal_acara'];
+    protected $fillable = ['nama_acara','tanggal_acara', 'total_hadir'];
 
     
 

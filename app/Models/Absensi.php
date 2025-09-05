@@ -9,7 +9,7 @@ class Absensi extends Model
 {
     protected $table = 'absensi';
 
-    protected $fillable = ['jemaat_id','acara_id'];
+    protected $fillable = ['jemaat_id','acara_id','done','status_kehadiran'];
     public function Jemaat() : BelongsTo
     {
         return $this->belongsTo(Jemaat::class);
@@ -17,6 +17,6 @@ class Absensi extends Model
     }
     public function Acara() : BelongsTo
     {
-        return $this->belongsTo(Acara::class);
+        return $this->belongsTo(Acara::class,'acara_id');
     }
 }

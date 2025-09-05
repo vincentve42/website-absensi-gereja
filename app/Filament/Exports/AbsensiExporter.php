@@ -31,10 +31,7 @@ class AbsensiExporter extends Exporter
 
         
     }
-    public static function getCompletedNotificationTitle(Export $export): string
-    {
-        return 'Export selesai ✅';
-    }
+    
     public static function getCompletedNotificationBody(Export $export): string
     {
         $body = 'Your absensi export has completed and ' . number_format($export->successful_rows) . ' ' . str('row')->plural($export->successful_rows) . ' exported.';
@@ -42,13 +39,35 @@ class AbsensiExporter extends Exporter
         if ($failedRowsCount = $export->getFailedRowsCount()) {
             $body .= ' ' . number_format($failedRowsCount) . ' ' . str('row')->plural($failedRowsCount) . ' failed to export.';
         }
-        
-        $absensi_sementara = Absensi::all();
+        $absensi_sementara = Absensi::where('done',0)->get();
+        $temp_acara = Absensi::where('done',0)->first();
         foreach($absensi_sementara as $absensi)
         {
-            $absensi->done = 1;
-            $absensi->save();
+            if($temp_acara->id != $absensi->acara_id)
+            {
+                $absensi->done = 1;
+                $absensi->save();
+                break;
+            }
+            else
+            {
+                if($absensi->status_kehadiran == 'Hadir')
+                {
+                    $absensi->done = 1;
+                    if ($absensi->Acara) {
+
+                        $absensi->Acara()->increment('total_hadir');
+                    }
+
+                }
+                
+            }
+                    $absensi->save();
+
+           
         }
+        
+       
     
 
         return $body;

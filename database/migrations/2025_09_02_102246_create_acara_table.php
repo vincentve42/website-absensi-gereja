@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->text('nama_acara');
-            $table->date('tanggal_acara');
-            $table->bigInteger('total_hadir')->default(0);
+            $table->text('tanggal_acara');
+            $table->integer('total_hadir')->default(0);
         });
     }
 

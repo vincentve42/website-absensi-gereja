@@ -12,6 +12,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\CheckboxColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
@@ -38,6 +39,7 @@ class JemaatResource extends Resource
                 TextInput::make('nama_jemaat')->label('Nama Jemaat')->required(),
                 TextInput::make('alamat_jemaat')->label('Alamat Jemaat')->required(),
                 TextInput::make('nomor_telepon')->label('Nomor Telepon')->required(),
+                
             ]);
     }
 
@@ -48,7 +50,8 @@ class JemaatResource extends Resource
                 TextColumn::make('id'),
                 TextColumn::make('nama_jemaat')->label('Nama Jemaat')->searchable()->sortable(),
                 TextColumn::make('alamat_jemaat')->label('Alamat Jemaat')->searchable(),
-                TextColumn::make('nomor_telepon')->label('Nomor Telepon')->searchable()
+                TextColumn::make('nomor_telepon')->label('Nomor Telepon')->searchable(),
+                CheckboxColumn::make('diundang')->label('Diundang')
             ])
             ->filters([
                 //

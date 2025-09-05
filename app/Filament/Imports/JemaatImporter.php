@@ -22,10 +22,7 @@ class JemaatImporter extends Importer
 
     public function resolveRecord(): ?Jemaat
     {
-        return Jemaat::firstOrNew([
-        
-         'nama_jemaat' => $this->data['nama_jemaat'],
-        ]);
+       
 
         return new Jemaat();
     }
