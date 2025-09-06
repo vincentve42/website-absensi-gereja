@@ -21,7 +21,7 @@ class AbsensiResource extends Resource
 {
     protected static ?string $model = Absensi::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-circle-stack';
 
     protected static ?string $slug = 'absensi';
 
